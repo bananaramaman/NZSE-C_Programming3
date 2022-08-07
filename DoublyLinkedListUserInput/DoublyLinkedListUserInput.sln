@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoublyLinkedListUserInput", "DoublyLinkedListUserInput.csproj", "{51926B9E-E212-4948-AB3D-B3912EF53365}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51926B9E-E212-4948-AB3D-B3912EF53365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51926B9E-E212-4948-AB3D-B3912EF53365}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51926B9E-E212-4948-AB3D-B3912EF53365}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51926B9E-E212-4948-AB3D-B3912EF53365}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E8095CF-51E8-4584-974D-C43056537C2C}
+	EndGlobalSection
+EndGlobal
