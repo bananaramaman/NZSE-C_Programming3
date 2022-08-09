@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace W2_Friday_Activity
+namespace FormativeAssessment2Task1B
 {
     internal class Program
     {
@@ -82,76 +81,42 @@ namespace W2_Friday_Activity
                     runner = runner.next;
                 }
             }
-            public bool Contains(int value) //checks if the item exists in the list
+            public void Reverse(int input) //checks if the item exists in the list
             {
-                Node current = head;
+                Node temp = null;                   //eg. list:  null<|1|>2,  1<|2|>3,   2<|3|>null                                   
+                Node current = head;                //eg. current = 1
                 while (current != null)
-                {   //check if current Node data is a multiple of 2
-                    if (current.data % 2 == 0)
-                    {
-                        return true;
-                    }
-                    current = current.next;
+                {                                   //        <---prev---- Node ----next--->
+                    temp = current.prev;            //eg. null<|1|>2      1<|2|>3      2<|3|>null
+                    current.prev = current.next;    //eg.    2<|1|>       3<|2|>    null<|3|>
+                    current.next = temp;            //eg.    2<|1|>null   3<|2|>1   null<|3|>2
+                    current = current.prev;         //eg.    2<|1|>null   3<|2|>1   null<|3|>2
                 }
-                return false;
-            }
-            public bool Remove(int value)   //finds an item in the list and removes it
-            {
-                Node current = head;
-                while (current != null)
-                {   //check if current Node data is a multiple of 2
-                    if (current.data % 2 != 0)
-                    {//end of the list
-                        if (current.next == null)       
-                        {//removing the last item in the list
-                            tail = current.prev;        
-                        }
-                        else 
-                        {
-                            current.next.prev = current.prev;
-                        }
-                        if (current.prev == null)
-                        {//start of the list
-                            head = current.next;
-                        }
-                        else
-                        {//tie nodes back together
-                            current.prev.next = current.next;
-                        }
-                        current = null;
-                        Count--;
-                        return true;
-                    }
-                    current = current.next;
+                if (temp != null)  
+                {
+                    head = temp.prev;
                 }
-                return false;
+                Console.WriteLine("\nYour list has been reversed.");
             }
         }
         public static void Main(string[] args)
         {
             LinkedList MyList = new LinkedList();
-            Console.WriteLine("Please enter integer numbers from 1 - 10 : ");
+            var value = new List<int>();
+            Console.WriteLine("LIST ONE - Please enter [5] integer numbers from 1 - 10 : ");
             userInput x = new userInput();
             x.UserInput();
             MyList.Addfirst(input);
             while (MyList.Count >= 1)
             {
                 MyList.Add(input);
-                if (MyList.Count >= 10)
+                if (MyList.Count > 4)
                 {
-                    foreach (var i in MyList)
-                    {   //calling remove function to cycle through nodes
-                        MyList.Remove(input);
-                    }
-                    Console.WriteLine("\nChecking Nodes contain even number: ");
-                    foreach (var i in MyList)
-                    {   //calling method function to cycle through nodes
-                        Console.WriteLine(MyList.Contains(input));
-                    }
+                    MyList.Reverse(input);
                     MyList.PrintList();
-                    break;
                 }
             }
-        }
+        }   //linkedlistNode<int> list1 = new LinkedList<int>();        //C# Canned LinkedList Method
+            //LinkedListNode<int> List1Current = List1.First;
     }
 }

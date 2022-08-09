@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace DoublyLinkedListUserInput
 {
@@ -32,7 +30,7 @@ namespace DoublyLinkedListUserInput
                 info = months[input - 1];
             }
         }
-        class LinkedList : IEnumerable<Node>        //Linked List Creator
+        class LinkedList       //Linked List Creator
         {
             private Node head;  
             public Node First
@@ -45,32 +43,8 @@ namespace DoublyLinkedListUserInput
                 get { return tail; }
             }
             public int count { get; private set; }
-            public IEnumerator<Node> GetEnumerator()    //defining enumerator for looping through linked list
-            {
-                Node current = head;
-                while (current != null)
-                {
-                    yield return current;
-                    current = current.next;
-                }
-            }
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return GetEnumerator();
-            }
-            public IEnumerable GetEnumeratorReverse()
-            {
-                Node current = tail;
-                while (current != null)
-                {
-                    yield return current;
-                    current = current.prev;
-                }
-            }
             public void Add(string info)        //method for adding nodes into linked List
             {
-                userInput x = new userInput();
-                x.UserInput();
                 Node newNode = new Node();
                 newNode.data = info;
                 if (tail == null)
@@ -87,8 +61,6 @@ namespace DoublyLinkedListUserInput
             }
             public void AddFirst(string info)
             {
-                userInput x = new userInput();
-                x.UserInput();
                 Node newNode = new Node();
                 newNode.data = info;
                 newNode.next = head;
@@ -109,7 +81,7 @@ namespace DoublyLinkedListUserInput
                 Console.WriteLine("\nList contains the following Nodes: ");
                 while (runner != null)
                 {
-                    Console.WriteLine(runner.data);
+                    Console.WriteLine(runner.data+", ");
                     runner = runner.next;
                 }
             }       //Method for printing all node data in linked list
@@ -118,17 +90,22 @@ namespace DoublyLinkedListUserInput
         {
             LinkedList MyList = new LinkedList();           //create an empty LinkedList
             Console.WriteLine("Please enter any amount of numbers from [1 - 12] press [0] when finished: ");
-            if (MyList.count <= 0)      //Initiate addfirst method
+            userInput x = new userInput();
+            if (MyList.count == 0)
             {
-                MyList.AddFirst(info);
+                x.UserInput();
+                MyList.AddFirst(info);  //Initiate addfirst method
             }
-            while (input != 0)      //initiate add method for further nodes
+            while (MyList.count >= 1)      //initiate add method for further nodes
             {
-                MyList.Add(info);
+                x.UserInput();
                 if (input == 0)     //user defined print list and exit program
                 {
                     MyList.PrintList();
+                    return;
                 }
+                else
+                    MyList.Add(info);
             }
         }
     }

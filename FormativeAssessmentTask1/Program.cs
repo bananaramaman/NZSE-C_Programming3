@@ -36,7 +36,7 @@ namespace FormativeAssessmentTask1
                 {
                     case 1:
                         Console.WriteLine("Please enter [10] numbers to be inserted in the queue: ");
-                        
+
                         for (int n = 0; n < 10; n++)
                         {
                             int x;

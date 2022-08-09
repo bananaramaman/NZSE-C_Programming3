@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace W2_Friday_Activity
+namespace FormativeAssessmentTask1A
 {
     internal class Program
     {
@@ -82,46 +81,12 @@ namespace W2_Friday_Activity
                     runner = runner.next;
                 }
             }
-            public bool Contains(int value) //checks if the item exists in the list
+            public bool Contains(List<int> value) //checks if the item exists in the list
             {
                 Node current = head;
                 while (current != null)
-                {   //check if current Node data is a multiple of 2
-                    if (current.data % 2 == 0)
-                    {
-                        return true;
-                    }
-                    current = current.next;
-                }
-                return false;
-            }
-            public bool Remove(int value)   //finds an item in the list and removes it
-            {
-                Node current = head;
-                while (current != null)
-                {   //check if current Node data is a multiple of 2
-                    if (current.data % 2 != 0)
-                    {//end of the list
-                        if (current.next == null)       
-                        {//removing the last item in the list
-                            tail = current.prev;        
-                        }
-                        else 
-                        {
-                            current.next.prev = current.prev;
-                        }
-                        if (current.prev == null)
-                        {//start of the list
-                            head = current.next;
-                        }
-                        else
-                        {//tie nodes back together
-                            current.prev.next = current.next;
-                        }
-                        current = null;
-                        Count--;
-                        return true;
-                    }
+                {
+                    value.Add(current.data);
                     current = current.next;
                 }
                 return false;
@@ -130,28 +95,46 @@ namespace W2_Friday_Activity
         public static void Main(string[] args)
         {
             LinkedList MyList = new LinkedList();
-            Console.WriteLine("Please enter integer numbers from 1 - 10 : ");
+            var value = new List<int>();
+            Console.WriteLine("LIST ONE - Please enter [3] integer numbers from 1 - 10 : ");
             userInput x = new userInput();
             x.UserInput();
             MyList.Addfirst(input);
             while (MyList.Count >= 1)
             {
                 MyList.Add(input);
-                if (MyList.Count >= 10)
+                if (MyList.Count >= 3)
                 {
-                    foreach (var i in MyList)
-                    {   //calling remove function to cycle through nodes
-                        MyList.Remove(input);
-                    }
-                    Console.WriteLine("\nChecking Nodes contain even number: ");
-                    foreach (var i in MyList)
-                    {   //calling method function to cycle through nodes
-                        Console.WriteLine(MyList.Contains(input));
-                    }
-                    MyList.PrintList();
+                    MyList.Contains(value);
                     break;
                 }
             }
+            LinkedList MyList2 = new LinkedList();
+            Console.WriteLine("\nLIST TWO - Please enter [3] integer numbers from 1 - 10 : ");
+            x.UserInput();
+            MyList2.Addfirst(input);
+            while (MyList2.Count >= 1)
+            {
+                MyList2.Add(input);
+                if (MyList2.Count >= 3)
+                {
+                    MyList2.Contains(value);
+                    break;
+                }
+            }
+            int g = 0;int i = 0;
+            while (value[i] == value[i + 3])
+            {
+                g++;i++;
+                if (g == 3)
+                {
+                    Console.WriteLine("\nLists ONE & TWO are identical");
+                    Console.ReadLine();
+                    Environment.Exit(0);
+                }
+            }
+            Console.WriteLine("\nThese lists are not the same!");
+            Console.ReadLine();
         }
     }
 }
