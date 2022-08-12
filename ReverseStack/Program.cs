@@ -11,7 +11,6 @@ namespace ReverseStack
             //prompt user for input, define variable.
             Console.WriteLine("Please Input a phrase: \n");
             string input = Console.ReadLine();
-
             //convert string to char array. Define stacks
             char[] chars = input.ToCharArray();
             int length = chars.Length -1;
@@ -29,7 +28,6 @@ namespace ReverseStack
             {
                 Console.Write(c);
             }
-            
             //reversing the current stack by popping elements from 'st' and pushing into 'rev'
             while (st.Count != 0)
             {
@@ -42,7 +40,6 @@ namespace ReverseStack
             {
                 Console.Write(c);
             }
-
             //checking if user input is a palindrome
             for (int i = 0; i <= length; i++)
             {
@@ -53,7 +50,6 @@ namespace ReverseStack
                     Console.WriteLine("\n{0} is a palindrome", input);
                 return;
             }
-
             Console.ReadLine();
         }
     }

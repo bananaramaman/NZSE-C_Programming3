@@ -1,15 +1,14 @@
 ﻿using System;
-
-namespace FormativeAssessment3Task1A
+namespace FormativeAssessment3Task1B
 {
     internal class Program
-    {   //Write a program to count the number of nodes in a given singly
-        //linked list (i.e length of a LinkedList using Recursive and Iterative approach)
-        public static int input;
+    {   //Write a program that searches a given key ‘x’ in a given singly linked list.
+        //The function should return true if x is present in linked list and false otherwise.
+        public static char input;
         public static string method;
         class Node
         {
-            public int data;
+            public char data;
             public Node next;
         }
         class LinkedList
@@ -26,7 +25,7 @@ namespace FormativeAssessment3Task1A
                     head = newNode;
                 }
                 else
-                {   
+                {
                     tail.next = newNode;    //Connect the nodes
                 }
                 tail = newNode; //set new Tail
@@ -41,7 +40,7 @@ namespace FormativeAssessment3Task1A
                     Console.WriteLine(runner.data);
                     runner = runner.next;
                 }
-                Console.WriteLine("\nthe list contains {0} values",Count);  //prints the total amount of nodes
+                Console.WriteLine("\nthe list contains {0} values", Count);  //prints the total amount of nodes
             }
             public void UserInput() //function handles user input and exception handling. Along with allowing user to exit loop
             {
@@ -50,11 +49,26 @@ namespace FormativeAssessment3Task1A
                 {
                     return;
                 }
-                if (!Int32.TryParse(method, out input))
+                if (!char.TryParse(method, out input))
                 {
                     Console.WriteLine("\n*** Error - Check input and try again ***\n");
                     Environment.Exit(1);
                 }
+            }
+            public void Contains()  //Function to check whether list contains a specific value.
+            {
+                Node runner = head;
+                Console.WriteLine("\nSearching for key 'x' in current list");
+                while (runner != null)
+                {
+                    if (input == 'x'|| input == 'X')
+                    {
+                        Console.WriteLine("\nArgghhh Matey! X marks the spot!");
+                        return;
+                    }
+                    runner = runner.next;
+                }
+                Console.WriteLine("No x was found in the list :(");
             }
         }
         public static void Main(string[] args)
@@ -67,11 +81,12 @@ namespace FormativeAssessment3Task1A
                 listylist.UserInput();  //calls user input function
                 if (method == string.Empty)
                 {
-                    listylist.PrintList();
+                    //listylist.PrintList();
                     keep = false;
                 }
                 listylist.Add();    //calls add function to insert user input into node
             }
+            listylist.Contains();   //contains function call 
         }
     }
 }

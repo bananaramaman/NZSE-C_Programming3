@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
-namespace FormativeAssessment2Task1B
+namespace LinkedListMegaCode
 {
     internal class Program
     {
@@ -24,11 +26,41 @@ namespace FormativeAssessment2Task1B
                 }
             }
         }
-        class LinkedList
+        class LinkedList : IEnumerable<Node>
         {
             public Node head;
+            public Node First
+            {
+                get { return head; }
+            }
             public Node tail;
+            public Node Last
+            {
+                get { return tail; }
+            }
             public int Count { get; private set; }
+            public IEnumerator<Node> GetEnumerator()
+            {
+                Node current = head;
+                while (current != null)
+                {
+                    yield return current;
+                    current = current.next;
+                }
+            }
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
+            public IEnumerable GetEnumeratorReverse()
+            {
+                Node current = tail;
+                while (current != null)
+                {
+                    yield return current;
+                    current =current.prev;
+                }
+            }
             public void Add(int data)   //AKA add last
             {
                 userInput x = new userInput();
@@ -73,7 +105,51 @@ namespace FormativeAssessment2Task1B
                     runner = runner.next;
                 }
             }
-            public void Reverse() //checks if the item exists in the list
+            public bool Contains(int value) //checks if the item exists in the list
+            {
+                Node current = head;
+                while (current != null)
+                {   //check if current Node data is a multiple of 2
+                    if (current.data % 2 == 0)
+                    {
+                        return true;
+                    }
+                    current = current.next;
+                }
+                return false;
+            }
+            public bool Remove(int value)   //finds an item in the list and removes it
+            {
+                Node current = head;
+                while (current != null)
+                {   //check if current Node data is a multiple of 2
+                    if (current.data % 2 != 0)
+                    {//end of the list
+                        if (current.next == null)
+                        {//removing the last item in the list
+                            tail = current.prev;
+                        }
+                        else
+                        {
+                            current.next.prev = current.prev;
+                        }
+                        if (current.prev == null)
+                        {//start of the list
+                            head = current.next;
+                        }
+                        else
+                        {//tie nodes back together
+                            current.prev.next = current.next;
+                        }
+                        current = null;
+                        Count--;
+                        return true;
+                    }
+                    current = current.next;
+                }
+                return false;
+            }
+            public void Reverse() //Reverses current list node positions and pointers
             {
                 Node temp = null;                   //eg. list:  null<|1|>2,  1<|2|>3,   2<|3|>null                                   
                 Node current = head;                //eg. current = 1
@@ -84,7 +160,7 @@ namespace FormativeAssessment2Task1B
                     current.next = temp;            //eg.    2<|1|>null   3<|2|>1   null<|3|>2
                     current = current.prev;         //eg.    2<|1|>null   3<|2|>1   null<|3|>2
                 }
-                if (temp != null)  
+                if (temp != null)
                 {
                     head = temp.prev;
                 }
@@ -94,20 +170,28 @@ namespace FormativeAssessment2Task1B
         public static void Main(string[] args)
         {
             LinkedList MyList = new LinkedList();
-            Console.WriteLine("LIST ONE - Please enter [5] integer numbers from 1 - 10 : ");
+            Console.WriteLine("Please enter integer numbers from 1 - 10 : ");
             userInput x = new userInput();
             x.UserInput();
             MyList.Addfirst(input);
             while (MyList.Count >= 1)
             {
                 MyList.Add(input);
-                if (MyList.Count > 4)
+                if (MyList.Count >= 10)
                 {
-                    MyList.Reverse();
+                    foreach (var i in MyList)
+                    {   //calling remove function to cycle through nodes
+                        MyList.Remove(input);
+                    }
+                    Console.WriteLine("\nChecking Nodes contain even number: ");
+                    foreach (var i in MyList)
+                    {   //calling method function to cycle through nodes
+                        Console.WriteLine(MyList.Contains(input));
+                    }
                     MyList.PrintList();
+                    break;
                 }
             }
-        }   //linkedlistNode<int> list1 = new LinkedList<int>();        //C# Canned LinkedList Method
-            //LinkedListNode<int> List1Current = List1.First;
+        }
     }
 }
