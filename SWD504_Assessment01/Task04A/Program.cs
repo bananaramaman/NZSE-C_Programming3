@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Task1A
+namespace Task04A
 {
     internal class Program
     {
@@ -122,10 +122,10 @@ namespace Task1A
                     break;
                 }
             }
-            int g = 0;int i = 0;
+            int g = 0; int i = 0;
             while (value[i] == value[i + 3])
             {
-                g++;i++;
+                g++; i++;
                 if (g == 3)
                 {
                     Console.WriteLine("\nLists ONE & TWO are identical");

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BubbleSortingAlgo
+namespace Task3
 {
     // C# program for implementation
     // of Bubble Sort
@@ -20,41 +20,33 @@ namespace BubbleSortingAlgo
                         arr[j + 1] = temp;   //arr[j+1] = 5
                     }
         }
-        /* Prints the array */
-        static void printArray(int[] arr)
+        static void printArray(int[] arr)   // Prints the array
         {
             int n = arr.Length;
             for (int i = 0; i < n; ++i)
                 Console.Write(arr[i] + " ");
             Console.WriteLine();
         }
-        static void UserInput(List<int> numbersList)    //Method of filtering odd numbers and storing the list to array 
+        static void UserInput(List<int> numbersList)    //Method for user input
         {
-            var temp = new List<int>(); //define temporary List
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 10; i++)
             {
                 int x;
                 string input = Console.ReadLine();
                 if (!Int32.TryParse(input, out x))  //exception handling
                 {
                     Console.WriteLine("incorrect input, please try again");
-                    Environment.Exit(1);
+                    Environment.ExitCode = 1;
                 }
-                temp.Add(x);    //populate with user input
-            }
-            foreach (int i in temp)
-            {
-                if (i % 2 == 0) //filter even numbers 
-                {
-                    numbersList.Add(i); //add to numbersList
-                }
+                else
+                    numbersList.Add(x);    //populate with user input
             }
         }
         // Driver method
         public static void Main()
         {
-            Console.WriteLine("Please input [15] integer numbers: ");
-            var numbersList = new List<int>();  //declare List to be used for even number filter
+            Console.WriteLine("Please input [10] integer numbers: ");
+            var numbersList = new List<int>();  //declare List to be used input
             UserInput(numbersList);
             var arr = numbersList.ToArray();    //convert List to arrry 
             bubbleSort(arr);

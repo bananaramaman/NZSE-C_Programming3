@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LinkedListMegaCode
+namespace Task04B
 {
     internal class Program
     {
@@ -58,7 +58,7 @@ namespace LinkedListMegaCode
                 while (current != null)
                 {
                     yield return current;
-                    current =current.prev;
+                    current = current.prev;
                 }
             }
             public void Add(int data)   //AKA add last

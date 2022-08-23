@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Task1A
+namespace Task1B
 {
     internal class Program
     {
@@ -27,15 +27,7 @@ namespace Task1A
         class LinkedList
         {
             public Node head;
-            public Node First
-            {
-                get { return head; }
-            }
             public Node tail;
-            public Node Last
-            {
-                get { return tail; }
-            }
             public int Count { get; private set; }
             public void Add(int data)   //AKA add last
             {
@@ -81,60 +73,41 @@ namespace Task1A
                     runner = runner.next;
                 }
             }
-            public bool Contains(List<int> value) //checks if the item exists in the list
+            public void Reverse() //checks if the item exists in the list
             {
-                Node current = head;
+                Node temp = null;                   //eg. list:  null<|1|>2,  1<|2|>3,   2<|3|>null                                   
+                Node current = head;                //eg. current = 1
                 while (current != null)
-                {
-                    value.Add(current.data);
-                    current = current.next;
+                {                                   //        <---prev---- Node ----next--->
+                    temp = current.prev;            //eg. null<|1|>2      1<|2|>3      2<|3|>null
+                    current.prev = current.next;    //eg.    2<|1|>       3<|2|>    null<|3|>
+                    current.next = temp;            //eg.    2<|1|>null   3<|2|>1   null<|3|>2
+                    current = current.prev;         //eg.    2<|1|>null   3<|2|>1   null<|3|>2
                 }
-                return false;
+                if (temp != null)
+                {
+                    head = temp.prev;
+                }
+                Console.WriteLine("\nYour list has been reversed.");
             }
         }
         public static void Main(string[] args)
         {
             LinkedList MyList = new LinkedList();
-            var value = new List<int>();
-            Console.WriteLine("LIST ONE - Please enter [3] integer numbers from 1 - 10 : ");
+            Console.WriteLine("LIST ONE - Please enter [5] integer numbers from 1 - 10 : ");
             userInput x = new userInput();
             x.UserInput();
             MyList.Addfirst(input);
             while (MyList.Count >= 1)
             {
                 MyList.Add(input);
-                if (MyList.Count >= 3)
+                if (MyList.Count > 4)
                 {
-                    MyList.Contains(value);
-                    break;
+                    MyList.Reverse();
+                    MyList.PrintList();
                 }
             }
-            LinkedList MyList2 = new LinkedList();
-            Console.WriteLine("\nLIST TWO - Please enter [3] integer numbers from 1 - 10 : ");
-            x.UserInput();
-            MyList2.Addfirst(input);
-            while (MyList2.Count >= 1)
-            {
-                MyList2.Add(input);
-                if (MyList2.Count >= 3)
-                {
-                    MyList2.Contains(value);
-                    break;
-                }
-            }
-            int g = 0;int i = 0;
-            while (value[i] == value[i + 3])
-            {
-                g++;i++;
-                if (g == 3)
-                {
-                    Console.WriteLine("\nLists ONE & TWO are identical");
-                    Console.ReadLine();
-                    Environment.Exit(0);
-                }
-            }
-            Console.WriteLine("\nThese lists are not the same!");
-            Console.ReadLine();
-        }
+        }   //linkedlistNode<int> list1 = new LinkedList<int>();        //C# Canned LinkedList Method
+            //LinkedListNode<int> List1Current = List1.First;
     }
 }
