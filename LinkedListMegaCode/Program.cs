@@ -259,7 +259,7 @@ namespace LinkedListMegaCode
                     {
                         MyList.bubbleSort();
                         MyList.PrintList();
-                        break;
+                        return;
                     }
                     MyList.Add();    //calls add function to insert user input into node
                 }

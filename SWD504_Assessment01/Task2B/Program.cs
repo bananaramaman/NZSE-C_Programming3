@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace Task02B
-{
+{   //linked list basic remove functions, rem first, rem last, rem specific, rem all.
     internal class Program
     {
         static void Main(string[] args)

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Task03
-{
+{//Binary tree traversal 
     /* Class containing left and right child of current node and key value*/
     class Node
     {

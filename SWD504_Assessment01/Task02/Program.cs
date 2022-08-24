@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace Task02A
-{
+{   //Basic STACK program functions, PUSH, POP, PEEK 
     internal class Program
     {
         static void Main(string[] args)
