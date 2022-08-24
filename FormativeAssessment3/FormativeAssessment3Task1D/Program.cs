@@ -31,7 +31,7 @@ namespace FormativeAssessment3Task1D
                 tail = newNode; //set new Tail
                 Count++;
             }
-            public void RemoveDuplicate()   //finds duplicate items in the list and removes it
+            public void Remove()   //finds an item in the list and removes it
             {
                 if (head == null)   //check if list is empty 
                     return;
@@ -104,9 +104,9 @@ namespace FormativeAssessment3Task1D
                 listylist.UserInput();  //calls user input function
                 if (method == string.Empty)
                 {
-                    listylist.RemoveDuplicate(); //calling remove function to cycle through nodes
+                    listylist.Remove(); //calling remove function to cycle through nodes
                     listylist.PrintList();
-                    return;
+                    break;
                 }
                 listylist.Add();    //calls add function to insert user input into node
             }

@@ -61,7 +61,7 @@ namespace FormativeAssessment3Task1B
                 Console.WriteLine("\nSearching for key 'x' in current list");
                 while (runner != null)
                 {
-                    if (runner.data == 'x' || runner.data == 'X')
+                    if (input == 'x' || input == 'X')
                     {
                         Console.WriteLine("\nArgghhh Matey! X marks the spot!");
                         return;
