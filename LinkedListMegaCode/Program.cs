@@ -49,6 +49,21 @@ namespace LinkedListMegaCode
                     current =current.prev;
                 }
             }
+            public void AddSingle()   //Function to add values to the list (SINIGLY LINKEDLIST)
+            {
+                Node newNode = new Node();
+                newNode.data = input;
+                if (tail == null)
+                {
+                    head = newNode;
+                }
+                else
+                {
+                    tail.next = newNode;    //Connect the nodes
+                }
+                tail = newNode; //set new Tail
+                Count++;
+            }
             public void Add()   //AKA add last
             {
                 Node newNode = new Node();
@@ -90,6 +105,40 @@ namespace LinkedListMegaCode
                     Console.WriteLine(runner.data);
                     runner = runner.next;
                 }
+            }
+            public void Palindrome()    //Function to check if linked list is palindrome
+            {
+                char[] chars = new char[Count]; //declare character array
+                int x = 0; int y = 0;
+                Node runner = head; //define list starting point
+                Console.WriteLine("\nChecking if list is palindrome ");
+                while (runner != null)
+                {
+                    chars[x] = Convert.ToChar(runner.data);     //save list node data into char array
+                    runner = runner.next;       //progress through list
+                    x++;
+                }
+                x--;
+                int length = chars.Length;
+                Console.WriteLine();
+                for (int i = 0; i < length; i++, x--)
+                {
+                    if (chars[i] != chars[x])   //check if array[first] is equal to array[last]
+                    {
+                        Console.Write(chars[i]);
+                    }
+                    else
+                    {
+                        Console.Write(chars[i]); y++;
+                    }
+                }
+                if (y != length)       //print whether list is palindrome or not
+                {
+                    Console.WriteLine(" is not a palindrome");
+                }
+                else
+                    Console.WriteLine(" is a palidrome");
+                return;
             }
             public bool Contains(int value) //checks if the item exists in the list
             {
@@ -174,7 +223,7 @@ namespace LinkedListMegaCode
                 }
                 return false;
             }
-            public void Removeduplicate()   //finds an item in singly linkedlist and removes it
+            public void Removeduplicate()   //finds duplicate items in singly linkedlist and removes it
             {
                 if (head == null)   //check if list is empty 
                     return;
