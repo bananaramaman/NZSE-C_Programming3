@@ -1,30 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LinkedListMegaCode
 {
     internal class Program
     {
         public static int input;
+        public static string method;
         class Node
         {
             public int data;
             public Node next;
             public Node prev;
-        }
-        class userInput
-        {
-            public void UserInput()
-            {
-                string method = (Console.ReadLine());
-                if (!Int32.TryParse(method, out input) || input > 10 || input < 1)
-                {
-                    Console.WriteLine("\n*** Error - Check input and try again ***\n");
-                    Environment.Exit(1);
-                }
-            }
         }
         class LinkedList : IEnumerable<Node>
         {
@@ -61,10 +49,8 @@ namespace LinkedListMegaCode
                     current =current.prev;
                 }
             }
-            public void Add(int data)   //AKA add last
+            public void Add()   //AKA add last
             {
-                userInput x = new userInput();
-                x.UserInput();
                 Node newNode = new Node();
                 newNode.data = input;
                 if (tail == null)
@@ -79,7 +65,7 @@ namespace LinkedListMegaCode
                 tail = newNode; //set new Tail
                 Count++;
             }
-            public void Addfirst(int data)
+            public void Addfirst()
             {
                 Node newNode = new Node();
                 newNode.data = input;
@@ -118,7 +104,7 @@ namespace LinkedListMegaCode
                 }
                 return false;
             }
-            public void bubbleSort()    //sorts list in ascending order
+            public void bubbleSort()    //sorts singly linkedlist in ascending order
             {
                 if (head == null)   //check if list is empty 
                     return;
@@ -157,7 +143,7 @@ namespace LinkedListMegaCode
                 }
                 return;
             }
-            public bool Remove(int value)   //finds odd or even item in the list and removes it
+            public bool Remove(int value)   //finds odd or even item doubly linkedlist and removes it
             {
                 Node current = head;
                 while (current != null)
@@ -188,7 +174,7 @@ namespace LinkedListMegaCode
                 }
                 return false;
             }
-            public void Removeduplicate()   //finds an item in the list and removes it
+            public void Removeduplicate()   //finds an item in singly linkedlist and removes it
             {
                 if (head == null)   //check if list is empty 
                     return;
@@ -226,7 +212,7 @@ namespace LinkedListMegaCode
                 }
                 return;
             }
-            public void Reverse() //Reverses current list node positions and pointers
+            public void Reverse() //Reverses doubly linkedlist node positions and pointers
             {
                 Node temp = null;                   //eg. list:  null<|1|>2,  1<|2|>3,   2<|3|>null                                   
                 Node current = head;                //eg. current = 1
@@ -243,30 +229,39 @@ namespace LinkedListMegaCode
                 }
                 Console.WriteLine("\nYour list has been reversed.");
             }
+            public void UserInput() //Function for storing user input into variable
+            {
+                method = (Console.ReadLine());
+                if (method == string.Empty) //if user has entered blank input, userinput loop will break.
+                {
+                    return;
+                }
+                if (!Int32.TryParse(method, out input))
+                {
+                    Console.WriteLine("\n*** Error - Check input and try again ***\n");
+                    Environment.Exit(1);
+                }
+            }
         }
         public static void Main(string[] args)
         {
             LinkedList MyList = new LinkedList();
-            Console.WriteLine("Please enter integer numbers from 1 - 10 : ");
-            userInput x = new userInput();
-            x.UserInput();
-            MyList.Addfirst(input);
+            Console.WriteLine("Please input values to the list: \nPress [Return]x2 to exit.");
+            MyList.UserInput();
+            MyList.Addfirst();
             while (MyList.Count >= 1)
             {
-                MyList.Add(input);
-                if (MyList.Count >= 10)
+                Boolean keep = true;
+                while (keep == true)
                 {
-                    foreach (var i in MyList)
-                    {   //calling remove function to cycle through nodes
-                        MyList.Remove(input);
+                    MyList.UserInput();  //calls user input function
+                    if (method == string.Empty)
+                    {
+                        MyList.bubbleSort();
+                        MyList.PrintList();
+                        break;
                     }
-                    Console.WriteLine("\nChecking Nodes contain even number: ");
-                    foreach (var i in MyList)
-                    {   //calling method function to cycle through nodes
-                        Console.WriteLine(MyList.Contains(input));
-                    }
-                    MyList.PrintList();
-                    break;
+                    MyList.Add();    //calls add function to insert user input into node
                 }
             }
         }
