@@ -116,7 +116,7 @@ namespace FormativeAssessment3Task1C
                 if (method == string.Empty)
                 {
                     listylist.Palindrome();   //palindrome function call 
-                    return;
+                    break;
                 }
                 listylist.Add();    //calls add function to insert user input into node
             }
