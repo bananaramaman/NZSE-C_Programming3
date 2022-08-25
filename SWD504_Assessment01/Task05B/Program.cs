@@ -22,17 +22,25 @@ namespace Task05B
         static public void Main()
         {
             // Initialize variable n.
-            Console.WriteLine("Please enter an integer");
-            int n;
+            Console.Write("Please enter an integer number of servers (n): ");
+            int n;int r; 
             string input = (Console.ReadLine());    //Exception handling
             if (!Int32.TryParse(input, out n) || n < 0)
             {
                 Console.WriteLine("\n*** Error - Check input and try again ***\n");
                 return;
             }
-            Console.Write("Factorial of number {0} is: ", n);
+            Console.Write("\nPlease enter an integer number of servers in use (r): ");
+            string user = (Console.ReadLine());    //Exception handling
+            if (!Int32.TryParse(user, out r) || r < 0 || r > n)
+            {
+                Console.WriteLine("\n*** Error - Check input and try again ***\n");
+                return;
+            }
+
             // Print Factorial
-            Console.Write(fac(n) + " ");
+            int result = fac(n) / (fac(r) * fac(n - r));
+            Console.WriteLine("\nTotal combinations of server selections {0}",result);
             Console.ReadLine();
         }
     }

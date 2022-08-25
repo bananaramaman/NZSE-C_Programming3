@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Task05A
 {   //five input numbers between 1 to 14 from the user
@@ -73,9 +71,7 @@ namespace Task05A
             public void Fib()
             {
                 Node n = head;
-                int x = 0;
-                int i = 0;
-                int j = 0;
+                int x; int i = 0; int j = 0;
                 while (n != null)
                 {
                     int[] array = new int[n.data+1];
