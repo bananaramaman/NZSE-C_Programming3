@@ -6,7 +6,7 @@ namespace HelloWorld.Tests
 {
     public class Tests
     {
-        private const string Expected = "Hello World!";
+        private const string Expected = "Goodbye World!";
         [SetUp]
         public void Setup()
         {
@@ -19,7 +19,7 @@ namespace HelloWorld.Tests
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                HelloWorld.Program.Main();
+                HelloWorld.Program.SayGoodbye();
 
                 var result = sw.ToString().Trim();
                 Assert.AreEqual(Expected, result);
