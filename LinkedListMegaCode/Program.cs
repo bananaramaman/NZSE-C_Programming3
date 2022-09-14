@@ -49,6 +49,45 @@ namespace LinkedListMegaCode
                     current =current.prev;
                 }
             }
+            public void Union(Node first, Node second)//function to merge two linked lists together + sort
+            {//We would be always adding nodes from the second list to the first list
+             //If second node head data is more than first one exhange it
+                if (Convert.ToInt32(first.next.data.ToString()) > Convert.ToInt32(second.data.ToString()))
+                {
+                    Node t = first;
+                    first = second;
+                    second = t;
+                    Count++;
+                }
+                Count++;
+                head = first;//Assign head to first node
+                //We need to assign head to first because first will continuosly be
+                //changing and so we want to store the beginning of list in head.
+                while ((first.next != null) && (second != null))
+                {
+                    if (Convert.ToInt32(first.next.data.ToString()) < Convert.ToInt32(second.data.ToString()))
+                    {
+                        first = first.next; //iterate over the first node
+                        Count++;
+                    }
+                    else
+                    {
+                        Node n = first.next;
+                        Node t = second.next;
+                        first.next = second;
+                        second.next = n;
+                        first = first.next;
+                        second = t;
+                        Count++;
+                    }
+                }
+                if (first.next == null)//means there are still some elements in second
+                {
+                    first.next = second;
+                    Count++;
+                }
+                Count++;
+            }
             public void AddSingle()   //Function to add values to the list (SINIGLY LINKEDLIST)
             {
                 Node newNode = new Node();
@@ -80,7 +119,7 @@ namespace LinkedListMegaCode
                 tail = newNode; //set new Tail
                 Count++;
             }
-            public void Addfirst()
+            public void Addfirst()  //add first nodes in DOUBLY LINKED lists
             {
                 Node newNode = new Node();
                 newNode.data = input;

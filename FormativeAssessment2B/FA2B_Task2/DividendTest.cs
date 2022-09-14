@@ -10,8 +10,12 @@ namespace FA2B_Task2
         int remainder;
         public int Testing(int dividend, int divisor)
         {
-            int quotient = dividend / divisor;
             remainder = dividend % divisor;
+            if (remainder <= 0)
+            {
+                throw new Exception("WRONG!");
+            }
+            int quotient = dividend / divisor;
 
             Console.WriteLine("Dividend:{0} Divisor:{1}", dividend, divisor);
             Console.WriteLine("Quotient = " + quotient);
